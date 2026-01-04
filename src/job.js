@@ -624,6 +624,71 @@ function formatDiscordPayload(title, description, success = true) {
   };
 }
 
+// ============================================================================
+// Obsidian Sync - Copies processed files to Obsidian vault
+// ============================================================================
+
+async function syncToObsidian(config) {
+  const obsidian = config.obsidian;
+  const vaultPath = process.env.OBSIDIAN_VAULT_PATH || obsidian?.vaultPath;
+
+  if (!vaultPath || !obsidian?.enabled) {
+    return { synced: false, reason: 'Obsidian not enabled' };
+  }
+
+  const bookmarksFolder = obsidian.bookmarksFolder || 'Twitter Captures';
+  const knowledgeFolder = obsidian.knowledgeFolder || `${bookmarksFolder}/Knowledge`;
+
+  const destBase = path.join(vaultPath, bookmarksFolder);
+  const destKnowledge = path.join(vaultPath, knowledgeFolder);
+
+  try {
+    // Create destination folders
+    fs.mkdirSync(path.join(destKnowledge, 'tools'), { recursive: true });
+    fs.mkdirSync(path.join(destKnowledge, 'articles'), { recursive: true });
+
+    let filesCopied = 0;
+
+    // Copy bookmarks.md
+    if (fs.existsSync(config.archiveFile)) {
+      fs.copyFileSync(config.archiveFile, path.join(destBase, 'bookmarks.md'));
+      filesCopied++;
+    }
+
+    // Copy knowledge files
+    const knowledgeSrc = path.dirname(config.archiveFile);
+    const toolsDir = path.join(knowledgeSrc, 'knowledge', 'tools');
+    const articlesDir = path.join(knowledgeSrc, 'knowledge', 'articles');
+
+    if (fs.existsSync(toolsDir)) {
+      for (const file of fs.readdirSync(toolsDir)) {
+        fs.copyFileSync(
+          path.join(toolsDir, file),
+          path.join(destKnowledge, 'tools', file)
+        );
+        filesCopied++;
+      }
+    }
+
+    if (fs.existsSync(articlesDir)) {
+      for (const file of fs.readdirSync(articlesDir)) {
+        fs.copyFileSync(
+          path.join(articlesDir, file),
+          path.join(destKnowledge, 'articles', file)
+        );
+        filesCopied++;
+      }
+    }
+
+    console.log(`  📓 Synced ${filesCopied} files to Obsidian: ${destBase}`);
+    return { synced: true, filesCopied, destination: destBase };
+
+  } catch (error) {
+    console.error(`  ⚠️  Obsidian sync failed: ${error.message}`);
+    return { synced: false, error: error.message };
+  }
+}
+
 function formatSlackPayload(title, description, success = true) {
   return {
     text: title,
@@ -736,6 +801,9 @@ export async function run(options = {}) {
 
       if (claudeResult.success) {
         console.log(`[${now}] Analysis complete`);
+
+        // Sync to Obsidian if enabled
+        const obsidianResult = await syncToObsidian(config);
 
         // Remove processed IDs from pending file
         // If we used --limit, restore from .full file first
