@@ -399,3 +399,287 @@ it's live now do check it out and would appreciate your feedback https://t.co/DO
 
 - **Tweet:** https://x.com/donvito/status/2006743894147711370
 - **What:** Follow-up endorsement emphasizing the value proposition of GLM 4.7 at $3/month subscription rate. Reflects developer sentiment about the model's capabilities relative to pricing.
+---
+
+# Sunday, December 28, 2025
+
+## @akoratana - Tweet Article Link
+> https://t.co/9W4ldW04zs
+
+- **Tweet:** https://x.com/akoratana/status/2005303231660867619
+- **What:** Plain tweet with article link to X article (unable to expand content).
+
+---
+
+# Tuesday, December 23, 2025
+
+## @JayaGup10 - Tweet Article Link
+> https://t.co/uPXcTUEsnc
+
+- **Tweet:** https://x.com/JayaGup10/status/2003525933534179480
+- **What:** Plain tweet with article link to X article (unable to expand content).
+
+---
+
+# Wednesday, December 10, 2025
+
+## @rryssf_ - Production-Grade Agentic AI Workflows Guide
+> Read full paper here: https://t.co/zyIfVth37F
+>
+> *Replying to @rryssf_:* This isn't a toy demo... my friends.
+>
+> They containerize the entire workflow and deploy it on Kubernetes with proper API boundaries, scaling, and health checks.
+>
+> This figure shows what "production-grade" actually means.
+
+- **Tweet:** https://x.com/rryssf_/status/1998699517722636484
+- **Link:** https://arxiv.org/abs/2512.08769
+- **Parent:** https://x.com/rryssf_/status/1998699505374707804
+- **Filed:** [production-grade-agentic-ai-workflows.md](./knowledge/articles/production-grade-agentic-ai-workflows.md)
+- **What:** Comprehensive arXiv paper providing practical guidance for designing, developing, and deploying production-quality agentic AI systems with multi-agent patterns, orchestration strategies, and deployment best practices.
+
+---
+
+# Sunday, November 9, 2025
+
+## @betterhn50 - Zensical: Next-Generation Static Site Generator
+> Zensical – A modern static site generator built by the Material for MkDocs team https://t.co/ccsomDYJHO (https://t.co/lNA70OpODp)
+
+- **Tweet:** https://x.com/betterhn50/status/1987573140298338369
+- **Link:** https://squidfunk.github.io/mkdocs-material/blog/2025/11/05/zensical/
+- **Filed:** [zensical.md](./knowledge/articles/zensical.md)
+- **What:** New static site generator by the Material for MkDocs team that addresses technical limitations of MkDocs with an improved architecture for building documentation sites.
+
+---
+
+# Monday, November 3, 2025
+
+## @GithubProjects - Motia: Multi-Language Backend Framework
+> GitHub Repository:
+> https://t.co/rqqcsPwsnD
+>
+> *Replying to @GithubProjects:* Motia is rethinking how backends are built.
+>
+> One open source system for APIs, events, background jobs, and AI agents.
+>
+> Multi-language. Scalable. Fault-tolerant.
+
+- **Tweet:** https://x.com/GithubProjects/status/1985429318726795289
+- **Link:** https://github.com/MotiaDev/motia
+- **Parent:** https://x.com/GithubProjects/status/1985429314729623632
+- **Filed:** [motia.md](./knowledge/tools/motia.md)
+- **What:** Unified backend framework using TypeScript, Python, and JavaScript that consolidates APIs, background jobs, queues, workflows, and AI agents under a single core primitive with built-in observability and state management.
+
+---
+
+# Friday, October 31, 2025
+
+## @lmstudio - Qwen3-VL Models Now Available in LM Studio
+> Qwen3-VL models are now live in LM Studio! 🎉🚀
+> A powerful collection of vision-language models.
+>
+> Happy Halloween! 🎃👻
+
+- **Tweet:** https://x.com/lmstudio/status/1984330903880155154
+- **What:** LM Studio announces the availability of Qwen3-VL vision-language models, expanding their collection of offline AI model tools.
+
+---
+
+# Saturday, October 11, 2025
+
+## @dimitriospaolo - On AI Business Models and Market Reality
+> you basically defined the ai bubble.
+>
+> *Replying to @levelsio:* An entire generation that is unaware just serving a combination of AI models in a user friendly interface to regular people is a million to billion dollar business
+
+- **Tweet:** https://x.com/dimitriospaolo/status/1977026471949652179
+- **Parent:** https://x.com/levelsio/status/1977025325285753347
+- **What:** A critical commentary on the AI industry's current business landscape, suggesting that simply wrapping AI models in user-friendly interfaces is a massive market opportunity.
+
+---
+
+# Tuesday, October 7, 2025
+
+## @asmah2107 - Backpressure and Flow Control in Data Pipelines
+> Quick question :
+>
+> You build a data pipeline.
+>
+> A fast "producer" service generates 10,000 events per second and puts them on a queue.
+>
+> A slower "consumer" service pulls them off to write to a database, but it can only handle 1,000 per second.
+>
+> At first, it's fine. But the queue starts growing... and growing... until it exhausts all available memory and crashes.
+>
+> How do you fix this?
+
+- **Tweet:** https://x.com/asmah2107/status/1975746834477015482
+- **What:** A technical thought-leadership question about handling mismatched producer/consumer throughput rates in distributed systems - highlights the critical need for backpressure handling.
+
+---
+
+# Saturday, September 13, 2025
+
+## @InsaneRealitys - Tactical Avoidance Wisdom
+> If your opponent moving like this, just walk away
+
+- **Tweet:** https://x.com/InsaneRealitys/status/1967004796780708345
+- **What:** A humorous take on self-defense - sometimes the best fight is the one you don't engage in.
+
+---
+
+# Thursday, September 11, 2025
+
+## @Baheet_ - Economics and Game Theory Article Success
+> i woke up to this article at 600 bookmarks.
+>
+> It now has over 1.2k  bookmarks, (my highest for a single post)
+>
+> tbh, I thought no one wants to read boring articles on economics and game theory
+>
+> guess I was wrong.
+>
+> In any case, you can anticipate more articles like this
+>
+> thanks :)
+>
+> *Quoting @Baheet_:* https://t.co/6Ed5FQq4HE
+
+- **Tweet:** https://x.com/Baheet_/status/1966068533592207630
+- **Quoted:** https://x.com/Baheet_/status/1965758390430208066
+- **What:** Baheet celebrates their economics and game theory article reaching 1.2k bookmarks, their highest-performing single post, anticipating more similar content.
+
+---
+
+# Saturday, August 23, 2025
+
+## @bibryam - Leading Engineers Towards AI-Assisted Future
+> Leading your engineers towards an AI-assisted future
+> https://t.co/eIkQIIAPnP
+
+- **Tweet:** https://x.com/bibryam/status/1959250523137204291
+- **Link:** https://blog.thepete.net/blog/2025/06/26/leading-your-engineers-towards-an-ai-assisted-future/
+- **Filed:** [leading-engineers-ai-assisted-future.md](./knowledge/articles/leading-engineers-ai-assisted-future.md)
+- **What:** Strategy guide for adopting AI-assisted engineering in organizations. Covers experimentation, metrics-driven adoption, and organizational support for AI tools.
+
+---
+
+
+## @MurataAlgoK - 100 Viral Hooks for Content Creation
+> 100 proven viral hooks that you can use to go viral https://t.co/2Q4kAVlJyi
+
+- **Tweet:** https://x.com/MurataAlgoK/status/1949112285655359726
+- **What:** Collection of 100 proven viral hooks for content creation and social media growth.
+
+---
+# Saturday, July 26, 2025
+
+## @theskilledcoder - System Design: Multiplayer Gaming Architecture
+> System Design: Multiplayer Gaming System (Like PUBG, Ludo, or Chess .com) https://t.co/SIh3TVtknZ
+
+- **Tweet:** https://x.com/theskilledcoder/status/1949096112905941234
+- **What:** System design guide for multiplayer gaming architecture covering real-time games like PUBG and chess platforms.
+
+---
+
+# Friday, July 11, 2025
+
+## @DOGE__news - Mark Ruffalo Rejects Elon Musk
+> Mark Ruffalo calls on people to reject Elon Musk while claiming 'we are the ones you have to believe in.'
+>
+> https://t.co/hkYtcA6mee
+
+- **Tweet:** https://x.com/DOGE__news/status/1943631354123751798
+- **Link:** https://x.com/AntSpeaks/status/1874051349932892611/video/1
+- **What:** Mark Ruffalo's commentary on Elon Musk and public persuasion. Contains video content.
+
+---
+
+# Saturday, June 28, 2025
+
+## @AllAbIntroverts - Introvert Photo Post
+> https://t.co/Kcx0VlTK5u
+
+- **Tweet:** https://x.com/AllAbIntroverts/status/1939044330049601777
+- **What:** Media post from All About Introverts account about introversion.
+
+---
+
+# Wednesday, June 4, 2025
+
+## @AndrewYNg - DSPy Build and Optimize Agentic Apps Course
+> New short course: DSPy: Build and Optimize Agentic Apps
+>
+> DSPy is a powerful open-source framework for automatically tuning prompts for GenAI applications. In this course, you'll learn to use DSPy, together with MLflow. This is built in partnership with @databricks and taught by @ChenMoneyQ, co-lead of the DSPy framework.
+>
+> Many AI builders spend hours hand-tuning prompts. When given a set of evals, DSPy automates this process. It's especially useful for optimizing prompts, including few-shot prompts, in complex agentic AI workflows. Further, if you switch an application to a newer LLM, performance can degrade if your prompts were optimized to the previous model. DSPy automatically optimizes the entire system for the new LLM as well, using just a few evaluation examples.
+>
+> This course teaches DSPy works, and best practices for using it. You'll write programs using DSPy's signature-based programming model, debug them with MLflow tracing -- to gain visibility into how different parts of a pipeline, as well as how the overall system, are performing -- and automatically improve their accuracy with DSPy Optimizer.
+
+- **Tweet:** https://x.com/AndrewYNg/status/1930277912030392356
+- **Link:** https://www.deeplearning.ai/short-courses/dspy-build-optimize-agentic-apps/
+- **Filed:** [dspy-build-optimize-agentic-apps](./knowledge/articles/dspy-build-optimize-agentic-apps.md)
+- **What:** Andrew Ng's DeepLearning.AI short course on DSPy in partnership with Databricks. Teaches automated prompt optimization, debugging with MLflow tracing, and using DSPy's signature-based programming for agentic AI applications.
+
+---
+
+# Friday, May 30, 2025
+
+## @garrytan - Parahelp Prompt Engineering Example
+> Here is the prompt
+>
+> https://parahelp.com/blog/prompt-design
+>
+> *Replying to @garrytan:* Parahelp open sourced one of its key prompts so everyone can see what cutting edge prompt engineering looks like
+
+- **Tweet:** https://x.com/garrytan/status/1928608691428676031
+- **Link:** https://parahelp.com/blog/prompt-design
+- **Parent:** https://x.com/garrytan/status/1928608438017249670
+- **Filed:** [parahelp-prompt-design](./knowledge/articles/parahelp-prompt-design.md)
+- **What:** Parahelp's cutting-edge prompt design resource showing real-world prompt engineering techniques. Part of conversation about open-sourcing key prompts for AI development learning.
+
+---
+
+# Sunday, May 25, 2025
+
+## @betterhn50 - Open Source Society University Computer Science Curriculum
+> Path to a free self-taught education in Computer Science https://github.com/ossu/computer-science
+
+- **Tweet:** https://x.com/betterhn50/status/1926752762487853374
+- **Link:** https://github.com/ossu/computer-science
+- **Filed:** [ossu-computer-science](./knowledge/tools/ossu-computer-science.md)
+- **What:** OSSU's complete undergraduate-level computer science curriculum covering intro, core, and advanced CS without cost. Designed for self-taught learners with 199k+ stars. Can be completed in ~2 years with 20 hours/week dedication.
+
+---
+
+# Thursday, May 22, 2025
+
+## @lee_stott - Model Context Protocol for Beginners Curriculum
+> Want to up your game in AI development? Get familiar with Model Context Protocol (MCP) Start with MCP for Beginners and level up your skills: https://github.com/microsoft/mcp-for-beginners/ #AI #Developers #MCP
+
+- **Tweet:** https://x.com/lee_stott/status/1925480363205230872
+- **Link:** https://github.com/microsoft/mcp-for-beginners/
+- **Filed:** [mcp-for-beginners](./knowledge/tools/mcp-for-beginners.md)
+- **What:** Microsoft's open-source MCP curriculum teaching Model Context Protocol fundamentals through cross-language examples (C#, Java, JavaScript, Rust, Python, TypeScript). Covers practical techniques for building modular, scalable AI workflows with 13k+ stars.
+
+
+---
+
+# Sunday, May 11, 2025
+
+## @latinteraction - DSPy Core Bets and Framework Philosophy
+> DSPy's biggest strength is also the reason it can admittedly be hard to wrap your head around it.
+>
+> It's basically say: LLMs & their methods will continue to improve but not equally in every axis, so:
+>
+> - What's the smallest set of fundamental abstractions that allow you to build downstream AI software that is "future-proof" and rides the tide of progress?
+>
+> - Equivalently, what are the right algorithmic problems that researchers should focus on to enable as much progress as possible for AI software?
+>
+> [Tweet truncated - full text covers 5 core DSPy bets]
+>
+> *Quoting @DSPyOSS:* Is this guy talking about DSPy?
+
+- **Tweet:** https://x.com/latinteraction/status/1921565300690149759
+- **Quoted:** https://x.com/DSPyOSS/status/1921374286498980140
+- **What:** Comprehensive breakdown of the five core philosophical bets behind DSPy: information flow, functional/structured interactions, polymorphic modules, decoupling behavior from learning paradigms, and natural language optimization. Explains why DSPy's abstraction-based approach is foundational for future-proof AI software.
