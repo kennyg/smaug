@@ -69,7 +69,7 @@ Use this format for date section headers (e.g., "Thursday, January 2, 2026").
 
 **Load paths and categories from config:**
 ```bash
-cat ./smaug.config.json | jq '{archiveFile, pendingFile, stateFile, categories}'
+cat ./smaug.config.json | jq '{archiveFile, pendingFile, stateFile, categories, obsidian}'
 ```
 
 This gives you:
@@ -77,9 +77,13 @@ This gives you:
 - `pendingFile`: Where pending bookmarks are stored
 - `stateFile`: Where processing state is tracked
 - `categories`: Custom category definitions
+- `obsidian`: Obsidian vault settings (if enabled)
 
 **IMPORTANT:** Use these paths throughout. The `~` will be the user's home directory.
 If no custom categories, use the defaults from `src/config.js`.
+
+**Check for Obsidian integration:**
+If `obsidian.enabled` is true (or `OBSIDIAN_VAULT_PATH` env var is set), you'll also export to Obsidian vault. See the "Obsidian Integration" section below.
 
 ## Input
 
@@ -476,4 +480,257 @@ Processed 4 bookmarks:
 4. @CasJam: Claude Code Video Post-Production
    → Plain tweet (video content)
    → Captured only, flagged for transcript
+```
+
+## Obsidian Integration
+
+When `obsidian.enabled` is true (or `OBSIDIAN_VAULT_PATH` env var is set), export bookmarks to an Obsidian vault in addition to the local archive.
+
+### Check Obsidian Config
+
+```bash
+# Check if Obsidian is enabled
+OBSIDIAN_ENABLED=$(cat ./smaug.config.json | jq -r '.obsidian.enabled // false')
+OBSIDIAN_VAULT=$(echo "${OBSIDIAN_VAULT_PATH:-$(cat ./smaug.config.json | jq -r '.obsidian.vaultPath // empty')}" | sed "s|^~|$HOME|")
+
+if [ "$OBSIDIAN_ENABLED" = "true" ] || [ -n "$OBSIDIAN_VAULT" ]; then
+  echo "Obsidian export enabled to: $OBSIDIAN_VAULT"
+fi
+```
+
+### Obsidian Folder Structure
+
+Within the vault, create this structure:
+```
+{vaultPath}/
+├── {bookmarksFolder}/           # e.g., "Twitter Captures"
+│   ├── bookmarks.md             # Main archive (same format, Obsidian-enhanced)
+│   ├── 2026-01-04.md            # Daily note (if using daily notes style)
+│   └── Knowledge/               # {knowledgeFolder}
+│       ├── Tools/
+│       │   └── whisper-flow.md
+│       └── Articles/
+│           └── gisthost-rendering.md
+```
+
+### Obsidian Entry Format
+
+Use Obsidian-specific formatting features:
+
+**1. YAML Frontmatter** (when `obsidian.frontmatter` is true):
+```yaml
+---
+title: "Whisper-Flow - Real-time Transcription Tool"
+date: 2026-01-04
+type: twitter-bookmark
+author: "@tom_doerr"
+tweet_url: "https://x.com/tom_doerr/status/123456"
+tags:
+  - twitter
+  - tool
+  - ai
+aliases:
+  - whisper-flow
+---
+```
+
+**2. Wikilinks** (when `obsidian.wikilinks` is true):
+- Link to knowledge files: `[[whisper-flow|Whisper-Flow]]`
+- Link to related notes: `[[AI Tools]]`, `[[GitHub Projects]]`
+- Author tags as wikilinks: `[[People/@tom_doerr|@tom_doerr]]`
+
+**3. Hashtags** (when `obsidian.hashtags` is true):
+- Convert folder tags to hashtags: `#ai-tools`, `#coding`
+- Add type hashtags: `#twitter/bookmark`, `#tool`, `#article`
+
+### Obsidian Bookmark Entry Template
+
+```markdown
+---
+title: "{descriptive_title}"
+date: {YYYY-MM-DD}
+type: twitter-bookmark
+author: "@{author}"
+source: "{tweet_url}"
+links:
+  - "{expanded_url}"
+tags:
+  - twitter/bookmark
+  - {category}
+  - {folder_tags}
+---
+
+## @{author} - {descriptive_title}
+
+> {tweet_text}
+
+### Details
+
+- **Tweet:** [{tweet_url}]({tweet_url})
+- **Link:** [{domain}]({expanded_url})
+- **Tags:** #twitter #{category} #{folder_tags}
+- **Filed:** [[{knowledge_file}|{title}]]
+- **What:** {1-2 sentence description}
+
+### Related
+
+- [[{category} Notes]]
+- [[Twitter Bookmarks]]
+```
+
+### Obsidian Knowledge File Template
+
+```markdown
+---
+title: "{tool_name}"
+date: {YYYY-MM-DD}
+type: tool
+source: "{github_url}"
+via: "@{twitter_author}"
+stars: {star_count}
+language: "{primary_language}"
+tags:
+  - tool
+  - {language}
+  - {topics}
+aliases:
+  - {repo_name}
+---
+
+# {tool_name}
+
+{Description of what the tool does}
+
+## Key Features
+
+- Feature 1
+- Feature 2
+
+## Links
+
+- **GitHub:** [{owner}/{repo}]({github_url})
+- **Via:** [[@{author}]] - [[{bookmark_title}|Original Tweet]]
+
+## Related
+
+- [[Tools]]
+- [[{language} Projects]]
+```
+
+### Export Workflow
+
+After processing each bookmark for the local archive:
+
+1. **Check if Obsidian is enabled:**
+   ```javascript
+   const obsidianVault = process.env.OBSIDIAN_VAULT_PATH || config.obsidian?.vaultPath;
+   const obsidianEnabled = config.obsidian?.enabled || !!obsidianVault;
+   ```
+
+2. **Create Obsidian folders if needed:**
+   ```bash
+   VAULT="${OBSIDIAN_VAULT_PATH:-$HOME/path/to/vault}"
+   BOOKMARKS_FOLDER="${OBSIDIAN_BOOKMARKS_FOLDER:-Twitter Captures}"
+   mkdir -p "$VAULT/$BOOKMARKS_FOLDER/Knowledge/Tools"
+   mkdir -p "$VAULT/$BOOKMARKS_FOLDER/Knowledge/Articles"
+   ```
+
+3. **Write Obsidian-formatted entry:**
+   - Add YAML frontmatter
+   - Use [[wikilinks]] for internal references
+   - Add #hashtags for tags
+   - Mirror the entry to `{vaultPath}/{bookmarksFolder}/bookmarks.md`
+
+4. **Write knowledge files to Obsidian:**
+   - Copy knowledge files (tools, articles) to `{vaultPath}/{knowledgeFolder}/`
+   - Use Obsidian-enhanced format with frontmatter
+
+5. **Git operations in Obsidian vault** (if vault is a git repo):
+   ```bash
+   if [ -d "$VAULT/.git" ]; then
+     cd "$VAULT" && git add -A && git commit -m "Add Twitter bookmarks" && git push
+   fi
+   ```
+
+### Parallel Processing with Obsidian
+
+When using subagents for 3+ bookmarks, each subagent should:
+1. Write local batch file as normal (`.state/batch-N.md`)
+2. Also write Obsidian batch file (`.state/obsidian-batch-N.md`) with enhanced formatting
+
+During merge phase:
+1. Merge local batch files → `bookmarks.md`
+2. Merge Obsidian batch files → `{vaultPath}/{bookmarksFolder}/bookmarks.md`
+3. Copy knowledge files to both locations
+
+### Example Obsidian Output
+
+**In vault: `Twitter Captures/bookmarks.md`**
+```markdown
+---
+title: Twitter Bookmarks
+description: Curated bookmarks from Twitter/X
+tags:
+  - twitter
+  - bookmarks
+  - index
+---
+
+# Twitter Bookmarks
+
+## Friday, January 3, 2026
+
+### @tom_doerr - Whisper-Flow Real-time Transcription
+
+> This is amazing - real-time transcription that actually works! https://t.co/abc123
+
+- **Tweet:** [View on X](https://x.com/tom_doerr/status/123)
+- **Link:** [github.com/dimastatz/whisper-flow](https://github.com/dimastatz/whisper-flow)
+- **Tags:** #twitter/bookmark #tool #ai #transcription
+- **Filed:** [[whisper-flow|Whisper-Flow Tool]]
+- **What:** Real-time speech-to-text transcription tool with high accuracy
+
+---
+```
+
+**In vault: `Twitter Captures/Knowledge/Tools/whisper-flow.md`**
+```markdown
+---
+title: Whisper-Flow
+date: 2026-01-03
+type: tool
+source: https://github.com/dimastatz/whisper-flow
+via: "@tom_doerr"
+stars: 1250
+language: Python
+tags:
+  - tool
+  - python
+  - ai
+  - transcription
+  - speech-to-text
+aliases:
+  - whisper-flow
+---
+
+# Whisper-Flow
+
+Real-time speech-to-text transcription using OpenAI's Whisper model with streaming support.
+
+## Key Features
+
+- Real-time transcription with low latency
+- Multiple language support
+- Easy integration with existing applications
+
+## Links
+
+- **GitHub:** [dimastatz/whisper-flow](https://github.com/dimastatz/whisper-flow)
+- **Via:** [[@tom_doerr]] - [[2026-01-03#@tom_doerr - Whisper-Flow|Original Tweet]]
+
+## Related
+
+- [[Tools]]
+- [[AI Projects]]
+- [[Python Projects]]
 ```

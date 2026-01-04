@@ -125,7 +125,36 @@ const DEFAULT_CONFIG = {
   webhookUrl: null,
 
   // Webhook type: 'discord', 'slack', or 'generic'
-  webhookType: 'discord'
+  webhookType: 'discord',
+
+  // ---- Obsidian Integration ----
+  // Export bookmarks to an Obsidian vault in addition to local files
+  obsidian: {
+    // Enable Obsidian export (also set via OBSIDIAN_VAULT_PATH env var)
+    enabled: false,
+
+    // Path to Obsidian vault (can use ~ for home, or set OBSIDIAN_VAULT_PATH env var)
+    vaultPath: null,
+
+    // Folder within vault for Twitter bookmarks (e.g., "Twitter Captures" or "Clippings/Twitter")
+    bookmarksFolder: 'Twitter Captures',
+
+    // Where to put knowledge files (tools, articles, etc.) - relative to vault
+    // Set to same as bookmarksFolder to keep everything together
+    knowledgeFolder: 'Twitter Captures/Knowledge',
+
+    // Use YAML frontmatter for Obsidian metadata
+    frontmatter: true,
+
+    // Use [[wikilinks]] for internal links and references
+    wikilinks: true,
+
+    // Convert folder tags to #hashtag format (in addition to [[tag]])
+    hashtags: true,
+
+    // Add backlinks section at bottom of entries
+    backlinks: true
+  }
 };
 
 /**
@@ -186,6 +215,11 @@ export function loadConfig(configPath) {
     folders: {
       ...DEFAULT_CONFIG.folders,
       ...fileConfig.folders
+    },
+    // Deep merge obsidian config
+    obsidian: {
+      ...DEFAULT_CONFIG.obsidian,
+      ...fileConfig.obsidian
     }
   };
 
@@ -238,12 +272,29 @@ export function loadConfig(configPath) {
     config.webhookType = process.env.WEBHOOK_TYPE;
   }
 
+  // Obsidian env vars
+  if (process.env.OBSIDIAN_VAULT_PATH) {
+    config.obsidian.vaultPath = process.env.OBSIDIAN_VAULT_PATH;
+    config.obsidian.enabled = true; // Auto-enable when path is set
+  }
+  if (process.env.OBSIDIAN_BOOKMARKS_FOLDER) {
+    config.obsidian.bookmarksFolder = process.env.OBSIDIAN_BOOKMARKS_FOLDER;
+  }
+  if (process.env.OBSIDIAN_KNOWLEDGE_FOLDER) {
+    config.obsidian.knowledgeFolder = process.env.OBSIDIAN_KNOWLEDGE_FOLDER;
+  }
+
   // Expand ~ in all path-related config values
   config.archiveFile = expandTilde(config.archiveFile);
   config.pendingFile = expandTilde(config.pendingFile);
   config.stateFile = expandTilde(config.stateFile);
   config.birdPath = expandTilde(config.birdPath);
   config.projectRoot = expandTilde(config.projectRoot);
+
+  // Expand ~ in obsidian paths
+  if (config.obsidian) {
+    config.obsidian.vaultPath = expandTilde(config.obsidian.vaultPath);
+  }
 
   // Expand ~ in category folders
   if (config.categories) {
@@ -306,7 +357,19 @@ export function initConfig(targetPath = './smaug.config.json') {
 
     // Notifications (optional)
     webhookUrl: null,
-    webhookType: 'discord'
+    webhookType: 'discord',
+
+    // Obsidian integration (optional)
+    // Set OBSIDIAN_VAULT_PATH env var or configure here
+    obsidian: {
+      // enabled: true,
+      // vaultPath: '~/Obsidian/MyVault',
+      // bookmarksFolder: 'Twitter Captures',
+      // knowledgeFolder: 'Twitter Captures/Knowledge',
+      // frontmatter: true,
+      // wikilinks: true,
+      // hashtags: true
+    }
   };
 
   fs.writeFileSync(targetPath, JSON.stringify(exampleConfig, null, 2) + '\n');
