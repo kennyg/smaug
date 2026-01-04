@@ -1,3 +1,289 @@
+# Sunday, January 4, 2026
+
+## @PsyopAnime - Here We Go
+> here. we. go https://t.co/n1yTU7J6cG
+
+- **Tweet:** https://x.com/PsyopAnime/status/2007735296562180433
+- **What:** Short video clip or media content with minimal context.
+
+## @elliotarledge - Claude Development Principles and Instructions
+> ~ ❯ cat ~/.claude/CLAUDE.md
+<claude-instructions>
+
+<python>
+  Use uv for everything: uv run, uv pip, uv venv.
+</python>
+
+<principles>
+  <style>No emojis. No em dashes - use hyphens or colons instead.</style>
+
+  <epistemology>
+    Assumptions are the enemy. Never guess numerical values - benchmark instead of estimating.
+    When uncertain, measure. Say "this needs to be measured" rather than inventing statistics.
+  </epistemology>
+
+  <scaling>
+    Validate at small scale before scaling up. Run a sub-minute version first to verify the
+    full pipeline works. When scaling, only the scale parameter should change.
+  </scaling>
+
+  <interaction>
+    Clarify unclear requests, then proceed autonomously. Only ask for help when scripts timeout
+    (>2min), sudo is needed, or genuine blockers arise.
+  </interaction>
+
+  <ground-truth-clarification>
+    For non-trivial tasks, reach ground truth understanding before coding. Simple tasks execute
+    immediately. Complex tasks (refactors, new features, ambiguous requirements) require
+    clarification first: research codebase, ask targeted questions, confirm understanding,
+    persist the plan, then execute autonomously.
+  </ground-truth-clarification>
+
+  <spec-driven-development>
+    When starting a new project, after compaction, or when https://t.co/rIZDuptbsz is missing/stale and
+    substantial work is requested: invoke /spec skill to interview the user. The spec persists
+    across compactions and prevents context loss. Update https://t.co/rIZDuptbsz as the project evolves.
+    If stuck or losing track of goals, re-read https://t.co/rIZDuptbsz or re-interview.
+  </spec-driven-development>
+
+  <first-principles-reimplementation>
+    Building from scratch can beat adapting legacy code when implementations are in wrong
+    languages, carry historical baggage, or need architectural rewrites. Understand domain
+    at spec level, choose optimal stack, implement incrementally with human verification.
+  </first-principles-reimplementation>
+
+  <constraint-persistence>
+    When user defines constraints ("never X", "always Y", "from now on"), immediately persist
+    to project's local https://t.co/VwQQ02uzee. Acknowledge, write, confirm.
+  </constraint-persistence>
+</principles>
+
+<machines>
+  `ssh macbook` - MacBook Pro
+  `ssh theodolos` - local workstation, RTX 3090
+  Check which machine we are currently on before using these.
+</machines>
+
+</claude-instructions>
+
+- **Tweet:** https://x.com/elliotarledge/status/2007752112361685197
+- **Tags:** [[claude]] [[development]] [[principles]]
+- **What:** A quote tweet sharing comprehensive Claude development instructions covering Python tooling with uv, principles for epistemology and scaling, and specification-driven development methodology. Includes references to machine configurations and constraint persistence guidelines.
+
+## @GithubProjects - Kriti-Images: Open-Source Image CDN Upgrade
+> https://t.co/CbTi9tLze9
+
+- **Tweet:** https://x.com/GithubProjects/status/2007776552533328005
+- **What:** A lightweight, open-source project offering an alternative upgrade for image CDN services. Reference to the kriti-images GitHub repository.
+
+---
+DATE: Sunday, January 4, 2026
+## @lateinteraction - RLMs Output Length Unbounded
+> Another understated aspect of RLMs: the *output* length is essentially unbounded too, not only input.
+>
+> A simple test of the difference in expressive power between a Transformer and an RLM: Give your favorite model a 30k-token prompt and ask it to repeat it verbatim. They will all fail, but an RLM trivially succeeds.
+
+- **Tweet:** https://x.com/lateinteraction/status/2007791072647266506
+- **What:** Discussion of how Recurrent Language Models (RLMs) can handle unbounded output lengths, unlike traditional Transformers, demonstrating a fundamental difference in expressive power.
+
+**Quoted from @a1zhang:** "Nope, it can directly use a variable in the REPL environment as the output. For example, let's say you have 1B tokens of Excel data want it to transform into 1B tokens of some transformation over it..."
+
+## @Teslarati - Insane Tesla Cybertruck Wrap
+> Absolutely insane Tesla Cybertruck wrap https://t.co/A6OW8m1Ato
+
+- **Tweet:** https://x.com/Teslarati/status/2007799288869634306
+- **What:** Video showcase of an unusual Tesla Cybertruck wrap design. Media link to video content on X/Twitter.
+
+## @BenjaminDEKR - AI Factory Assembly Line Pipeline
+> I built an AI Factory that uses Claude Code agents to build apps while I sleep.
+>
+> This is an automated "assembly line" pipeline, all run by Claude Opus 4.5. Projects move through a Kanban-like system from Idea to Research, Architecture, Coding and Testing.
+>
+> Factory workers start with market research, searching the web and social media. Then they validate everything, checking app stores for competition and securing a domain name. (All automated by APIs and MCPs)
+>
+> They automatically create several rounds of app UI revisions. When I wake up, there are projects waiting for me to review: approve this design, give feedback, send that one back for improvement.
+>
+> Projects are actively coded and tested by the agents, while the entire process is tracked and logged (with "worker documents" that travel each step of the way, like a real factory.)
+
+- **Tweet:** https://x.com/BenjaminDEKR/status/2007842172666560983
+- **What:** An automated AI-powered development pipeline using Claude Code agents that processes app ideas through research, architecture, coding, and testing stages, with human review checkpoints.
+
+## @RoyRogers_HTMS - Flamenco Acoustic Guitar Tutorial
+> How to play flamenco acoustic guitar easy tutorial for beginners https://t.co/p1KHhzFxN4
+
+- **Tweet:** https://x.com/RoyRogers_HTMS/status/2007851158816317485
+- **What:** Video tutorial for beginners on how to play flamenco-style acoustic guitar. Educational music content.
+
+## @DanielMiessler - Personal AI Infrastructure Updates
+> You guys aren't ready for what is about to be in PAI. https://t.co/O07KbfbZPQ https://t.co/BlDaPRdNBM
+
+- **Tweet:** https://x.com/DanielMiessler/status/2007874121171136651
+- **What:** Announcement about upcoming features in Personal AI Infrastructure (PAI), an open-source framework for building personalized AI assistants and agents with structured workflows.
+
+**Quoted from @GregKamradt:** "Noticing that agents will end at omni running, always on: Run/Query - One shot problems, Short runs - Claude code/Codex (we are here), Long Run - Days/Weeks, Omni - Always on"
+
+---
+DATE: Sunday, January 4, 2026
+## @DanielMiessler - Personal AI Infrastructure for Upgrading Humans
+
+> You guys aren't ready for what is about to be in PAI. https://t.co/O07KbfbZPQ https://t.co/BlDaPRdNBM
+
+- **Tweet:** https://x.com/DanielMiessler/status/2007879725650411698
+- **What:** Daniel Miessler shared a reply about upcoming features in his Personal AI Infrastructure project, an open-source framework for building AI-powered operating systems. PAI uses a universal pattern of nested loops (outer loop for goals, inner loop for the scientific method) to structure any pursuit, with 8 available packs and bundles for personalization.
+
+## @codytriesstuff - Chicken Teriyaki Mall Food Court Style
+
+> Chicken teriyaki, but mall food court style https://t.co/QmAeRtf1u3
+
+- **Tweet:** https://x.com/codytriesstuff/status/2007889833239450005
+- **What:** A casual tweet with video showing a chicken teriyaki dish in the style of mall food court preparation.
+
+## @pepicrft - Integrating Clawdbot with Mise for CLI Installation
+
+> I've been thinking about how to marry two of my favorite tools: @steipete's Clawdbot and @jdxcode's Mise.
+
+Clawdbot is an incredible AI assistant that can run locally and interact with your system. Mise is a polyglot tool version manager that can install pretty much anything.
+
+This PR adds a convenient interface to Clawdbot for installing CLIs from a registry, using Mise under the hood. One command to install, compile if needed, and enable globally.
+
+In a follow-up I'd like to add support for auto-discovery of the right Mise tool backend (npm, go, cargo, ubi, etc.) based on the project structure.
+
+https://t.co/J741kqsLDd
+
+- **Tweet:** https://x.com/pepicrft/status/2007900125310644688
+- **What:** Pedro Piñera shared work on integrating Clawdbot (a personal AI assistant) with Mise (a polyglot tool version manager). The integration provides a convenient interface for installing CLIs from a registry, with plans for auto-discovery of the right backend based on project structure.
+
+## @lateinteraction - DSPy Creator Building Organic Content at Scale
+
+> @KarelDoostrlnck My understanding is that for the last ~1.5 years or something like that, @tom_doerr has been doing this with DSPy. He started with, like, 1k followers but look at his account now😅
+
+- **Tweet:** https://x.com/lateinteraction/status/2007901343680442436
+- **What:** Omar Khattab replies to a discussion about organic content creation, noting that Tom Doerr has been successfully building an audience using DSPy (a framework for optimizing language model programs) over the past 1.5 years, growing from around 1k followers to a much larger following.
+
+## @trq212 - Understanding LLMs Through 3Blue1Brown's Educational Breakdown
+
+> How do they work?
+
+LLMs are not as complex as you might think.
+
+I've really enjoyed 3blue1brown's breakdown of concepts like neural networks, gradient descent, transformers and attention.
+
+https://t.co/OCDWYp2hgV
+
+- **Tweet:** https://x.com/trq212/status/2007903198493974889
+- **What:** Thariq shares a YouTube playlist from 3Blue1Brown that breaks down fundamental concepts for understanding LLMs, including neural networks, gradient descent, transformers, and attention mechanisms. Part of a thread discussing the foundations of how LLMs work.
+
+---
+
+# Saturday, January 3, 2026
+
+## @DanielleMorrill - Claude Code as Chief of Staff for Managers
+> executives, managers of people, managers of process, managers of agents… get Claude Code to be your chief of staff by organizing a repo around everything you do and find ways to make it better and make it clearly documented
+
+> Quoted from @DanielleMorrill: startup CEOs do not sleep on this, get a "company" repo going and hire Claude Code to be your Chief of Staff https://t.co/KyNnkH5uXx
+
+- **Tweet:** https://x.com/DanielleMorrill/status/2007508036584341899
+- **What:** Strategy for leveraging Claude Code as an organizational chief of staff by centralizing processes and documentation in a repository, applicable to various management roles from people management to agent coordination.
+
+## @Yuchenj_UW - AI Coding Collapses Learning Curve for Engineers
+> ex-Google and Meta distinguished engineer, Gemini co-author @_arohan_:
+>
+> "if I had agentic coding and particularly opus, I would have saved myself first 6 years of my work compressed into few months."
+>
+> This matches my experience. AI collapses the learning curve, and turns junior engineers into senior engineers dramatically fast.
+>
+> New-hire onboarding on large codebases shrinks from months to days. What used to take hours of Googling and Stack Overflow is now a single prompt. AI is also a good mentor and pair programmer. Agency is all you need now.
+
+> Quoted from @Yuchenj_UW: Claude Code built in an hour what took a Google team a year.
+>
+> That part isn't shocking. What is shocking is that Google allows their engineers to use Claude Code instead of forcing Gemini, Gemini CLI, or Antigravity.
+>
+> Giving engineers access to the best AI coding tool is the best decision you can make.
+
+- **Tweet:** https://x.com/Yuchenj_UW/status/2007512853625090095
+- **What:** Insights from experienced engineers on how agentic coding with Claude dramatically accelerates development productivity and learning, with onboarding timelines shrinking from months to days and the tool functioning as both mentor and pair programmer.
+
+---
+DATE: Saturday, January 3, 2026
+## @joshmo_dev - Rust RLM Demo Showing Recursive Language Models
+> following on from @a1zhang 's paper on RLMs and @PrimeIntellect's blog post on RLMs being the paradigm for 2026
+
+I wrote a small Rust demo that shows how to write your own RLM that executes bash code and python snippets - and demoed it today in the livestream with @FrancescoCiull4!
+
+if you want to check it out, here's the link: https://t.co/H7LP6GChF3
+
+- **Tweet:** https://x.com/joshmo_dev/status/2007523519152959670
+- **What:** A Rust implementation of Recursive Language Models (RLMs), demonstrating agentic architecture where models return commands executed in a REPL instead of traditional tool calling.
+
+## @JustRockContent - Time Stand Still - RUSH Live Cleveland 2011
+> "Time Stand Still" - RUSH
+
+Live • Cleveland - 2011
+ https://t.co/HFt9qWAOGp
+
+- **Tweet:** https://x.com/JustRockContent/status/2007609099446563330
+- **What:** Live performance video of Rush's "Time Stand Still" from Cleveland, 2011.
+
+---
+
+# Wednesday, December 31, 2025
+
+## @BrianRoemmele - How to Start an F-16
+> How to start an F-16, bookmark just incase.2026 will be weirder and weirder. https://t.co/0usAlBGO9p
+
+- **Tweet:** https://x.com/BrianRoemmele/status/2006247740381225194
+- **What:** Humorous bookmark about F-16 startup procedures, shared as a tongue-in-cheek prediction about the unexpectedness of 2026.
+
+---
+
+# Saturday, December 20, 2025
+
+## @petergyang - Claude Code Tutorials and Interviews Collection
+> All my practical Claude Code tutorials and interviews in one list:
+>
+> TUTORIALS
+>
+> Build a movie discovery app in 15 min:
+> https://t.co/Uvu5Z2eRZM
+>
+> Build a YouTube research agent in 15 min:
+> https://t.co/JkSfuZWM3L
+>
+> Build a family activity finder in 35 min: https://t.co/uHXRYPQ3uO
+>
+> INTERVIEWS
+>
+> How the Claude Code team ships | Cat Wu (Product Lead): https://t.co/KEZO8FnjPW
+>
+> From design to code with Claude Code | Meaghan Choi (Design Lead): https://t.co/ey5ilyn2Kt
+>
+> AND COMING TOMORROW...
+>
+> Automate your life with Claude Code in 50 min | Teresa Torres
+>
+> Subscribe to my YouTube for more extremely practical AI tutorials: https://t.co/Ggqaa3F11Z
+
+- **Tweet:** https://x.com/petergyang/status/2002402550570758283
+- **What:** Comprehensive collection of Claude Code tutorials and team interviews spanning quick 15-minute app builds to in-depth interviews with product and design leads. Includes practical examples of using Claude Code for various applications and organizational approaches.
+
+---
+
+# Thursday, November 13, 2025
+
+---
+DATE: Thursday, November 13, 2025
+## @bcherny - Claude Code WebFetch Token Efficiency Improvements
+> In the next version of Claude Code, Claude's WebFetch tool automatically adds Accept: "text/markdown, *" to requests which helps docs sites provide token-efficient docs https://t.co/uYthd1m9RP
+
+> Quoted from @bunjavascript: When Claude Code fetches Bun's docs, Bun's docs now send markdown instead of HTML by default
+>
+> This shrinks token usage for our docs by about 10x https://t.co/cvasTo6h43
+
+- **Tweet:** https://x.com/bcherny/status/1988860326306087102
+- **What:** Claude Code now sends Accept headers requesting markdown content, enabling documentation sites to respond with token-efficient markdown instead of HTML. Bun has already implemented this optimization, reducing their docs' token usage by 10x.
+
+---
+
 # Friday, January 2, 2026
 
 ## @parcadei - Continuous Claude v2 Context Management
