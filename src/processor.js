@@ -131,19 +131,29 @@ export function fetchFromSource(config, count = 10, options = {}) {
   const source = config.source || 'bookmarks';
 
   if (source === 'bookmarks') {
-    return fetchBookmarks(config, count, options);
+    const bookmarks = fetchBookmarks(config, count, options);
+    // Tag each item with its source
+    return bookmarks.map(b => ({ ...b, _source: 'bookmark' }));
   } else if (source === 'likes') {
-    return fetchLikes(config, count);
+    const likes = fetchLikes(config, count);
+    // Tag each item with its source
+    return likes.map(l => ({ ...l, _source: 'like' }));
   } else if (source === 'both') {
     const bookmarks = fetchBookmarks(config, count, options);
     const likes = fetchLikes(config, count);
-    // Merge and dedupe by ID
+    // Merge and dedupe by ID, tagging each with source
     const seen = new Set();
     const merged = [];
-    for (const item of [...bookmarks, ...likes]) {
+    for (const item of bookmarks) {
       if (!seen.has(item.id)) {
         seen.add(item.id);
-        merged.push(item);
+        merged.push({ ...item, _source: 'bookmark' });
+      }
+    }
+    for (const item of likes) {
+      if (!seen.has(item.id)) {
+        seen.add(item.id);
+        merged.push({ ...item, _source: 'like' });
       }
     }
     return merged;
@@ -571,12 +581,14 @@ export async function fetchAndPrepareBookmarks(options = {}) {
         isReply: !!bookmark.inReplyToStatusId,
         replyContext,
         isQuote: !!quoteContext,
-        quoteContext
+        quoteContext,
+        source: bookmark._source || 'bookmark' // 'bookmark' or 'like'
       });
 
       const mediaInfo = media.length > 0 ? ` (${media.length} media)` : '';
       const tagInfo = tags.length > 0 ? ` [${tags.join(', ')}]` : '';
-      console.log(`  Prepared: @${author} with ${links.length} links${mediaInfo}${tagInfo}${replyContext ? ' (reply)' : ''}${quoteContext ? ' (quote)' : ''}`);
+      const sourceInfo = bookmark._source === 'like' ? ' ❤️' : '';
+      console.log(`  Prepared: @${author} with ${links.length} links${mediaInfo}${tagInfo}${replyContext ? ' (reply)' : ''}${quoteContext ? ' (quote)' : ''}${sourceInfo}`);
 
     } catch (error) {
       console.error(`  Error processing bookmark ${bookmark.id}: ${error.message}`);

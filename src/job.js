@@ -625,8 +625,68 @@ function formatDiscordPayload(title, description, success = true) {
 }
 
 // ============================================================================
-// Obsidian Sync - Copies processed files to Obsidian vault
+// Obsidian Sync - Copies processed files to Obsidian vault with enhancements
 // ============================================================================
+
+/**
+ * Add YAML frontmatter and convert to Obsidian format
+ */
+function obsidianify(content, type, obsidianConfig) {
+  const today = new Date().toISOString().split('T')[0];
+
+  // Build frontmatter
+  const frontmatter = obsidianConfig.frontmatter ? `---
+title: "Twitter ${type === 'likes' ? 'Likes' : 'Bookmarks'}"
+type: twitter-${type}
+updated: ${today}
+tags:
+  - twitter
+  - ${type}
+---
+
+` : '';
+
+  let result = content;
+
+  // Add frontmatter if not already present
+  if (obsidianConfig.frontmatter && !content.startsWith('---')) {
+    result = frontmatter + content;
+  }
+
+  // Convert [[tag]] style tags and add #hashtags
+  if (obsidianConfig.wikilinks || obsidianConfig.hashtags) {
+    // Find Tags: lines and enhance them
+    result = result.replace(/- \*\*Tags:\*\* (.+)/g, (match, tags) => {
+      let enhanced = tags;
+
+      // Ensure wikilinks format [[tag]]
+      if (obsidianConfig.wikilinks && !tags.includes('[[')) {
+        enhanced = tags.split(/,\s*/).map(t => `[[${t.trim()}]]`).join(' ');
+      }
+
+      // Add hashtags
+      if (obsidianConfig.hashtags) {
+        const hashTags = tags.replace(/\[\[|\]\]/g, '').split(/[\s,]+/)
+          .filter(t => t.trim())
+          .map(t => `#${t.trim().toLowerCase().replace(/\s+/g, '-')}`)
+          .join(' ');
+        enhanced = enhanced + ' ' + hashTags;
+      }
+
+      return `- **Tags:** ${enhanced}`;
+    });
+  }
+
+  // Convert Filed links to wikilinks
+  if (obsidianConfig.wikilinks) {
+    result = result.replace(/- \*\*Filed:\*\* \[([^\]]+)\]\(([^)]+)\)/g, (match, text, link) => {
+      const filename = link.split('/').pop().replace('.md', '');
+      return `- **Filed:** [[${filename}|${text}]]`;
+    });
+  }
+
+  return result;
+}
 
 async function syncToObsidian(config) {
   const obsidian = config.obsidian;
@@ -649,13 +709,23 @@ async function syncToObsidian(config) {
 
     let filesCopied = 0;
 
-    // Copy bookmarks.md
+    // Copy and enhance bookmarks.md
     if (fs.existsSync(config.archiveFile)) {
-      fs.copyFileSync(config.archiveFile, path.join(destBase, 'bookmarks.md'));
+      const content = fs.readFileSync(config.archiveFile, 'utf8');
+      const enhanced = obsidianify(content, 'bookmarks', obsidian);
+      fs.writeFileSync(path.join(destBase, 'bookmarks.md'), enhanced);
       filesCopied++;
     }
 
-    // Copy knowledge files
+    // Copy and enhance likes.md
+    if (config.likesFile && fs.existsSync(config.likesFile)) {
+      const content = fs.readFileSync(config.likesFile, 'utf8');
+      const enhanced = obsidianify(content, 'likes', obsidian);
+      fs.writeFileSync(path.join(destBase, 'likes.md'), enhanced);
+      filesCopied++;
+    }
+
+    // Copy knowledge files (already have frontmatter)
     const knowledgeSrc = path.dirname(config.archiveFile);
     const toolsDir = path.join(knowledgeSrc, 'knowledge', 'tools');
     const articlesDir = path.join(knowledgeSrc, 'knowledge', 'articles');

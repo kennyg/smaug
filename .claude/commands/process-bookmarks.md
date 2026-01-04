@@ -91,6 +91,7 @@ Prepared bookmarks are in the `pendingFile` path from config (typically `./.stat
 
 Each bookmark includes:
 - `id`, `author`, `authorName`, `text`, `tweetUrl`, `date`
+- `source` - either `"bookmark"` or `"like"` (determines which file to write to)
 - `tags[]` - folder tags from bookmark folders (e.g., `["ai-tools"]`)
 - `links[]` - each with `original`, `expanded`, `type`, and `content`
   - `type`: "github", "article", "video", "tweet", "media", "image"
@@ -169,7 +170,16 @@ Match each bookmark's links against category patterns (check `match` arrays). Us
 
 #### c. Write bookmark entry
 
-Add to the `archiveFile` path from config (expand `~` to home directory):
+**IMPORTANT: Check the `source` field to determine which file to write to:**
+- If `source === "bookmark"` → write to `archiveFile` (bookmarks.md)
+- If `source === "like"` → write to `likesFile` (likes.md)
+
+Both files use the same format. Get paths from config:
+```bash
+cat ./smaug.config.json | jq '{archiveFile, likesFile}'
+```
+
+Add to the appropriate file (expand `~` to home directory):
 
 **CRITICAL ordering rules for bookmarks.md:**
 

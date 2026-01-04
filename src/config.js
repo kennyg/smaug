@@ -22,6 +22,9 @@ const DEFAULT_CONFIG = {
   // Where to store the markdown archive
   archiveFile: './bookmarks.md',
 
+  // Where to store likes (separate from bookmarks when source is 'both')
+  likesFile: './likes.md',
+
   // Where to store pending bookmarks (JSON) before processing
   pendingFile: './.state/pending-bookmarks.json',
 
@@ -227,6 +230,9 @@ export function loadConfig(configPath) {
   if (process.env.ARCHIVE_FILE) {
     config.archiveFile = process.env.ARCHIVE_FILE;
   }
+  if (process.env.LIKES_FILE) {
+    config.likesFile = process.env.LIKES_FILE;
+  }
   if (process.env.PENDING_FILE) {
     config.pendingFile = process.env.PENDING_FILE;
   }
@@ -286,6 +292,7 @@ export function loadConfig(configPath) {
 
   // Expand ~ in all path-related config values
   config.archiveFile = expandTilde(config.archiveFile);
+  config.likesFile = expandTilde(config.likesFile);
   config.pendingFile = expandTilde(config.pendingFile);
   config.stateFile = expandTilde(config.stateFile);
   config.birdPath = expandTilde(config.birdPath);
